@@ -1,0 +1,54 @@
+﻿<div class="breadcrumbs">
+    <h1>Query View</h1>
+</div>
+
+<div class="form-group col-md-3 col-sm-12 col-xs-12">
+    <label>Database</label>
+    <select ng-model="selectedDb" ng-options="x.name for x in databases" class="form-control input-medium"></select>
+</div>
+<!--<div class="form-group col-md-3 col-sm-12 col-xs-12">
+    <label>Table</label>
+    <select ng-model="selectedTable" ng-options="y for y in selectedDb.tables" class="form-control input-medium">
+    </select>
+</div>-->
+<div class="btn-group querybutton">
+    <a ng-click="search()" href="javascript:;" style="margin-right:10px" class="btn btn-lg red">
+        Query
+        <i class="fa fa-search"></i>
+    </a>
+    <a ng-click="export()" href="javascript:;" style="margin-left: 10px" class="btn btn-lg green">
+        Export
+        <i class="fa fa-file-text-o"></i>
+    </a>
+</div>
+<br />
+<div class="clearfix"></div>
+<div id="sqleditor"></div>
+<br />
+<br />
+<h4 ng-show="!error && recordset.elapsed">Query proccessed in {{recordset.elapsed}} ms</h4>
+<h4 ng-show="error"><strong class="red">Error: {{error}}</strong></h4>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-table"></i>Results
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th ng-repeat="column in recordset.columns"> {{column}} </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in recordset.rows">
+                        <td ng-repeat="column in recordset.columns"> {{row[column]}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

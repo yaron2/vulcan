@@ -1,0 +1,11 @@
+﻿#sqleditor {
+    height: 300px;
+}
+
+.querybutton {
+    padding-top: 15px;
+}
+
+.hidden {
+    display: none;
+}

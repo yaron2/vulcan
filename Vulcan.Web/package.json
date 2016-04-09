@@ -1,0 +1,28 @@
+{
+  "name": "Vulcan.Web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "description": "Vulcan.Web",
+  "author": {
+    "name": "yaronsc",
+    "email": ""
+  },
+  "dependencies": {
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
+    "cors": "^2.7.1",
+    "debug": "~2.0.0",
+    "express": "~4.9.0",
+    "jade": "~1.6.0",
+    "jwt-simple": "^0.5.0",
+    "moment": "^2.12.0",
+    "mongoose": "^4.4.11",
+    "morgan": "~1.3.0",
+    "mssql": "^3.1.2",
+    "stylus": "0.42.3",
+    "timer-stopwatch": "^0.2.0"
+  }
+}

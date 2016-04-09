@@ -1,0 +1,60 @@
+﻿<!-- BEGIN BREADCRUMBS -->
+<div class="breadcrumbs">
+    <h1>Home</h1>
+</div>
+<!-- END BREADCRUMBS -->
+<!-- BEGIN PAGE BASE CONTENT -->
+<!-- BEGIN DASHBOARD STATS 1-->
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 blue" href="#/databases">
+            <div class="visual">
+                <i class="fa fa-comments"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup">{{databases}}</span>
+                </div>
+                <div class="desc"> Databases </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 red">
+            <div class="visual">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup">{{tables}}</span>
+                </div>
+                <div class="desc"> Tables </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green" href="#/history">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup">{{queries}}</span>
+                </div>
+                <div class="desc"> Queries </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="text-center" ng-show="databases === 0">
+    <img src="../../assets/global/img/database.png" />
+    <br />
+    <h3>Wow, you haven't added any databases yet. <br> <br> Click <a href="javascript:;" ng-click="addNew()">here</a> to change that.</h3>
+</div>
+<div class="text-center" ng-show="databases > 0">
+    <br />
+    <br />
+    <h3>Project Vulcan is an open source Web and Mobile SQL Query tool. It came about as a competitor for BigQuery's console.</h3>
+</div>
+<!-- END DASHBOARD STATS 1-->

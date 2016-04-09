@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
+Version: 4.5.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="vulcanapp">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>Vulcan Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="../assets/pages/css/login.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
+    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.angularjs.org/1.5.3/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.3/angular-route.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.3/angular-cookies.min.js"></script>
+    <script src="assets/global/plugins/angularjs/plugins/angular-modal-service.js"></script>
+    <script src="components/app.module.js"></script>
+    <script src="components/login/loginController.js"></script>
+</head>
+<!-- END HEAD -->
+<body class="login">
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        <a href="javascript:;">
+            <h3 class="white">Project Vulcan</h3>
+        </a>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN LOGIN -->
+    <div ng-controller="loginCtrl" class="content">
+        <!-- BEGIN LOGIN FORM -->
+        <form ng-submit="login(loginFrm)" ng-show="loginVisible" class="login-form" name="loginFrm" id="loginFrm" method="post">
+            <h3 class="form-title font-green">Sign In</h3>
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button>
+                <span> Enter any username and password. </span>
+            </div>
+            <div class="form-group">
+                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                <label class="control-label visible-ie8 visible-ie9">Email</label>
+                <input ng-model="email" class="form-control form-control-solid placeholder-no-fix" id="email" type="email" autocomplete="off" placeholder="Email" name="email" required />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="loginFrm.email.$touched && loginFrm.email.$error.required">
+                    Required field
+                </span>
+                <span class="error" ng-show="loginFrm.email.$touched && loginFrm.email.$error.email">
+                    Not a valid email
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <input ng-model="password" class="form-control form-control-solid placeholder-no-fix" id="password" type="password" autocomplete="off" placeholder="Password" name="password" required />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="loginFrm.password.$touched && loginFrm.password.$error.required">
+                    Required field
+                </span>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn green uppercase">Login</button>
+                <label class="rememberme check">
+                    <input type="checkbox" name="remember" value="1" />Remember
+                </label>
+                <a id="forget-password" ng-click="showForgotPassword()" class="forget-password">Forgot Password?</a>
+            </div>
+
+            <div class="create-account">
+                <p>
+                    <a ng-click="showRegister()" id="register-btn" class="uppercase">Create an account</a>
+                </p>
+            </div>
+        </form>
+        <!-- END LOGIN FORM -->
+        <!-- BEGIN FORGOT PASSWORD FORM -->
+        <form ng-show="forgotPasswordVisible" class="forget-form">
+            <h3 class="font-green">Forget Password ?</h3>
+            <p> Enter your e-mail address below to reset your password. </p>
+            <div class="form-group">
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-btn" ng-click="showLogin()" class="btn btn-default">Back</button>
+                <button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
+            </div>
+        </form>
+        <!-- END FORGOT PASSWORD FORM -->
+        <!-- BEGIN REGISTRATION FORM -->
+        <form ng-submit="register(registerFrm)" name="registerFrm" ng-show="registerVisible" class="register-form">
+            <h3 class="font-green">Sign Up</h3>
+            <p class="hint"> Enter your account details below: </p>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">First Name</label>
+                <input required ng-model="regFirstname" class="form-control placeholder-no-fix" type="text" placeholder="First Name" name="firstname" />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="registerFrm.firstname.$touched && registerFrm.firstname.$error.required">
+                    Required field
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Last Name</label>
+                <input required ng-model="regLastname" class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="lastname" />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="registerFrm.lastname.$touched && registerFrm.lastname.$error.required">
+                    Required field
+                </span>
+            </div>
+            <div class="form-group">
+                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                <label class="control-label visible-ie8 visible-ie9">Email</label>
+                <input required ng-model="regEmail" class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="registerFrm.email.$touched && registerFrm.email.$error.required">
+                    Required field
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <input required ng-model="regPassword" class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password" placeholder="Password" name="password" />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="registerFrm.password.$touched && registerFrm.password.$error.required">
+                    Required field
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+                <input pw-check="password" required ng-model="regRePassword" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" id="rpassword" name="rpassword" />
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="registerFrm.rpassword.$touched && registerFrm.rpassword.$error.required">
+                    Required field
+                </span>
+            </div>
+            <div role="alert">
+                <span class="error" ng-show="registerFrm.rpassword.$error.pwmatch">
+                    Passwords do not match
+                </span>
+            </div>
+            <div class="form-group margin-top-20 margin-bottom-20">
+                <label class="check">
+                    <input type="checkbox" ng-model="agreeTerms" name="tnc" /> I agree to the
+                    <a href="javascript:;"> Terms of Service </a> &
+                    <a href="javascript:;"> Privacy Policy </a>
+                </label>
+                <div id="register_tnc_error"> </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="register-back-btn" ng-click="showLogin()" class="btn btn-default">Back</button>
+                <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+            </div>
+        </form>
+        <!-- END REGISTRATION FORM -->
+    </div>
+    <div class="copyright"> 2016 © Vulcan</div>
+    <!--[if lt IE 9]>
+    <script src="../assets/global/plugins/respond.min.js"></script>
+    <script src="../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/toastr/toastr.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <!--<script src="../assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>-->
+    <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <!-- END THEME LAYOUT SCRIPTS -->
+</body>
+</html>

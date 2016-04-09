@@ -1,0 +1,36 @@
+﻿<div class="breadcrumbs">
+    <h1>History</h1>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="portlet light">
+            <div class="portlet-body">
+                <div class="mt-element-list">
+                    <div class="mt-list-head list-simple ext-1 font-white bg-green-sharp">
+                        <div class="list-head-title-container">
+                            <h3 class="list-title">Recent Queries</h3>
+                        </div>
+                    </div>
+                    <div class="mt-list-container list-simple ext-1">
+                        <ul>
+                            <li ng-repeat="query in queries" class="mt-list-item done">
+                                <div class="list-icon-container">
+                                    <i class="icon-check"></i>
+                                </div>
+                                <div class="list-datetime"> {{moment(query.createdAt).fromNow()}} </div>
+                                <div class="list-item-content">
+                                    <h3 class="uppercase">
+                                        <span href="javascript:;">{{query.text}}</span>
+                                    </h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

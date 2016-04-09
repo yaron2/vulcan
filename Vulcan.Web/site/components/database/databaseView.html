@@ -1,0 +1,33 @@
+﻿<div class="breadcrumbs">
+    <h1>Database Details</h1>
+</div>
+<br />
+
+<h1>Name: {{database.name}}</h1>
+<h2>Server: {{database.server}}</h2>
+<h2>Admin: {{database.admin}}</h2>
+<br />
+<div>
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-bubble font-green"></i>
+                <span class="caption-subject font-green sbold uppercase">Tables</span>
+            </div>
+        </div>
+        <div class="portlet-body ">
+            <div class="dd" id="nestable_list_1">
+                <ol class="dd-list">
+                    <li ng-repeat="table in tables" class="dd-item">
+                        <div class="dd-handle"> {{table.name}} </div>
+                        <ol class="dd-list">
+                            <li ng-repeat="column in table.columns" class="dd-item">
+                                <div class="dd-handle"> {{column.name}} <strong>({{column.type}})</strong></div>
+                            </li>
+                        </ol>
+                    </li>                  
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
