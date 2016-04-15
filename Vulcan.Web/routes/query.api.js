@@ -64,7 +64,7 @@ function performQuery(db, query, callback) {
         password: db.password,
         server: db.server,
         database: db.name,
-        
+        connectionTimeout: 3000,
         options: {
             encrypt: true 
         }
@@ -79,13 +79,12 @@ function performQuery(db, query, callback) {
         request.query(query).then(function (recordset) {
                 stopwatch.stop();
                 callback(({ status: 'ok', timeInMS: stopwatch.ms, recordset: { columns: recordset.columns, rows: recordset }}));
-        }).catch(function (err) {
+            }).catch(function (err) {
                 stopwatch.stop();
                 callback(({ status: 'error', errorMessage: err.message }));
             });
     }).catch(function (err) {
-        stopwatch.stop();
-        callback(({ status: 'error', errorMessage: 'Connection Error' }));
+        callback(({ status: 'error', errorMessage: err.message }));
     });           
 }
 

@@ -4,7 +4,7 @@ var DB = require('../schemas/database.js');
 
 router.get('/', function (req, res) {
     var userId = req.token;
-    DB.find({ 'userId': userId }, function (error, dbs) {
+    DB.find({ 'userId': userId }, 'name server admin _id', function (error, dbs) {
         res.json({ status: 'ok', databases: dbs });
     });
 });
@@ -13,7 +13,7 @@ router.get('/:id', function (req, res) {
     var userId = req.token;
     var id = req.params.id;
 
-    DB.findOne({ 'userId': userId, '_id': id }, function (error, db) {
+    DB.findOne({ 'userId': userId, '_id': id }, 'name server admin _id', function (error, db) {
         res.json({ status: 'ok', database: db });
     });
 });
@@ -69,7 +69,7 @@ router.get('/:id/tables', function (req, res) {
                 password: db.password,
                 server: db.server,
                 database: db.name,
-                
+                connectionTimeout: 3000,
                 options: {
                     encrypt: true
                 }
@@ -82,10 +82,10 @@ router.get('/:id/tables', function (req, res) {
                 request.query(query).then(function (recordset) {
                     res.json({ status: 'ok', tables: recordset });
                 }).catch(function (err) {
-                    res.json({ status: 'error', errorMessage: 'Connection Error' });
+                    res.json({ status: 'error', errorMessage: err.message });
                 });
             }).catch(function (err) {
-                res.json({ status: 'error', errorMessage: 'Connection Error' });
+                res.json({ status: 'error', errorMessage: err.message });
             });         
         }
     });

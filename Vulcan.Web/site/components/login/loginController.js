@@ -31,6 +31,10 @@
         }
     }
     
+    $scope.myFunc = function () {
+        alert('lala');
+    }
+
     $scope.login = function (form) {
         if (form.$valid) {
             var model = {

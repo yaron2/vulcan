@@ -1,6 +1,7 @@
 ﻿app.controller("databaseCtrl", function ($scope, $routeParams, $location) {
     $scope.database = "";
     $scope.tables = [];
+    $scope.error = "";
 
     function getDatabase() {
         $.ajax(apiUrl + '/databases/' + $routeParams.id, { method: 'GET', contentType: 'application/json' }).success(function (response) {
@@ -18,6 +19,10 @@
             if (response.status === 'ok') {
                 sortTables(response.tables);
             }
+            else {
+                $scope.error = response.errorMessage;
+                $scope.$apply();
+            }
         }).fail(function () {
             toastr.error('Failed fetching databases');
         });
@@ -32,6 +37,8 @@
     }
 
     function sortTables(tables) {
+        $scope.error = "";
+
         var tbls = [];
         
         for (var t in tables) {
