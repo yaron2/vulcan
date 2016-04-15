@@ -12,7 +12,7 @@ var databasesApi = require('./routes/databases.api.js');
 var auth = require('./routes/authentication.js');
 var users = require('./routes/users.js');
 
-mongoose.connect(config.db);
+mongoose.connect(process.env.MongoURL || config.db);
 
 app.use(cors());
 app.use(bodyParser.json());
