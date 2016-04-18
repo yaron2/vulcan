@@ -60,7 +60,7 @@ app.use('/users', users);
 app.use('/api/query', queryApi);
 app.use('/api/databases', databasesApi);
 
-var port = 4000;
+var port = config.port;
 app.listen(port);
 
 module.exports = app;
