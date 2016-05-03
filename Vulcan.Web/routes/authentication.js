@@ -33,7 +33,6 @@ router.post('/login', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-    console.log('register');
     if (!req.body) {
         res.json({ status: 'error', errorMessage: 'Body cannot be empty' });
         return;

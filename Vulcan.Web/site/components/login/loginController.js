@@ -23,7 +23,7 @@
             
             $.ajax('/auth/register', { method: 'POST', contentType: 'application/json', data: JSON.stringify(model) }).success(function (response) {
                 if (response.status === 'ok') {
-                    location.href = document.location.origin + '#/home';
+                    login(model.email, model.password);
                 }
                 else
                     toastr.error(response.errorMessage);
@@ -31,15 +31,10 @@
         }
     }
     
-    $scope.myFunc = function () {
-        alert('lala');
-    }
-
-    $scope.login = function (form) {
-        if (form.$valid) {
-            var model = {
-                email: $scope.email,
-                password: $scope.password
+    function login(email, password) {
+        var model = {
+                email: email,
+                password: password
             }
             
             $.ajax('/auth/login', { method: 'POST', contentType: 'application/json', data: JSON.stringify(model) }).success(function (response) {
@@ -60,6 +55,11 @@
             }).fail(function () {
                 toastr.error('Wrong email or password');
             });
+    }
+    
+    $scope.login = function (form) {
+        if (form.$valid) {
+            login($scope.email, $scope.password);
         }
     }
     

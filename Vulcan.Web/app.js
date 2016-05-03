@@ -1,4 +1,6 @@
-﻿var express = require('express');
+﻿console.log("Running in " + process.env.NODE_ENV + " mode");
+
+var express = require('express');
 var path = __dirname + '/site/';
 var bodyParser = require('body-parser');
 var config = require('./config.js').config();
@@ -12,7 +14,7 @@ var databasesApi = require('./routes/databases.api.js');
 var auth = require('./routes/authentication.js');
 var users = require('./routes/users.js');
 
-mongoose.connect(process.env.MongoURL || config.db);
+mongoose.connect(process.env.mongoDB || config.db);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -31,12 +33,10 @@ app.use(function (req, res, next) {
         res.status(200).send();
         return;
     }
-    // check header or url parameters or post parameters for token
+    
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     
-    // decode token
     if (token) {
-        // verifies secret and checks exp
         var decoded = jwt.decode(token, config.secret);
         if (decoded) {
             req.token = decoded;
@@ -47,8 +47,6 @@ app.use(function (req, res, next) {
             return;
         }
     } else {
-        // if there is no token
-        // return an error
         return res.status(403).send({
             status: 'error', 
             errorMessage: 'No token provided.'
