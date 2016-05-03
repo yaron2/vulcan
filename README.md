@@ -1,3 +1,4 @@
 # vulcan
 
-Vulcan is an open source SQL query and management tool
+Vulcan is an open source web based SQL query and management tool.
+
