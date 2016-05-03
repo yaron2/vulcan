@@ -1,6 +1,4 @@
-﻿console.log("Running in " + process.env.NODE_ENV + " mode");
-
-var express = require('express');
+﻿var express = require('express');
 var path = __dirname + '/site/';
 var bodyParser = require('body-parser');
 var config = require('./config.js').config();
@@ -14,7 +12,7 @@ var databasesApi = require('./routes/databases.api.js');
 var auth = require('./routes/authentication.js');
 var users = require('./routes/users.js');
 
-mongoose.connect(process.env.mongoDB || config.db);
+mongoose.connect(process.env.mongoDB);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -58,7 +56,7 @@ app.use('/users', users);
 app.use('/api/query', queryApi);
 app.use('/api/databases', databasesApi);
 
-var port = config.port;
+var port = process.env.port;
 app.listen(port);
 
 module.exports = app;
